@@ -81,15 +81,6 @@
 		}
 	},
 	{
-		"id": 3899539,
-		"name": "Antofagasta",
-		"country": "CL",
-		"coord": {
-			"lon": -70.400002,
-			"lat": -23.65
-		}
-	},
-	{
 		"id": 3899462,
 		"name": "Arauco",
 		"country": "CL",

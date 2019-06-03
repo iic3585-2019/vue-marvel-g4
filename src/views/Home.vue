@@ -1,29 +1,21 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-    <input type="text" v-model="city" list="cities" />
-    <datalist id="cities">
-      <option v-for="city in cities" :key="city.id">{{ city.name }}</option>
-    </datalist>
+    <img src="http://icons.iconarchive.com/icons/papirus-team/papirus-apps/256/weather-icon.png" />
+    <h1>Pronóstico para {{city}}</h1>
   </div>
+  
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-import cityList from "@/chileanCities.json";
 
 export default {
   name: "home",
-  data() {
-    return {
-      city: "",
-      cities: cityList
-    };
+  computed : {
+    city : {
+      get () {
+        return this.$store.state.name;
+      },
+    },
   },
-  components: {
-    HelloWorld
-  }
 };
 </script>
