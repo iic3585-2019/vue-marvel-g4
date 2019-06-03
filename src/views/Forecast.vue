@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+  <div class="forecast">
     <img src="http://icons.iconarchive.com/icons/papirus-team/papirus-apps/256/weather-icon.png" />
-    <h1>El tiempo en {{city}}</h1>
+    <h1>Pronóstico para {{city}}</h1>
   </div>
   
 </template>
@@ -9,7 +9,7 @@
 <script>
 
 export default {
-  name: "home",
+  name: "forecast",
   computed : {
     city : {
       get () {

@@ -19,9 +19,9 @@ export default {
   data() {
     return {
       scales: [
-        { name: "Fahrenheit", param: "imperial" },
-        { name: "Celcius", param: "matric" },
-        { name: "Kelvin", param: "" }
+        { name: "F°", param: "imperial" },
+        { name: "°C", param: "metric" },
+        { name: "K", param: "" }
       ]
     };
   },
@@ -40,6 +40,6 @@ export default {
 
 <style>
 .scaleSelector {
-    width: 25%;
+    width: 20%;
 }
 </style>

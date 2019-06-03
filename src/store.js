@@ -9,7 +9,7 @@ export default new Vuex.Store({
     name: "Santiago",
     lon: -70.64827,
     lat: -33.45694,
-    scale: { name: "Celcius", param: "metric" }
+    scale: { name: "°C", param: "metric" }
   },
   mutations: {
     updateCity(state, city) {
