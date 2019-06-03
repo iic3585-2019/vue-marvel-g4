@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       scales: [
-        { name: "F°", param: "imperial" },
+        { name: "°F", param: "imperial" },
         { name: "°C", param: "metric" },
         { name: "K", param: "" }
       ]
