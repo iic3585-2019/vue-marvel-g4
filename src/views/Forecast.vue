@@ -10,8 +10,8 @@
         {{' / '+ day.maxT + ' '+ scale }}
         <img :src="getUrl(day.maxIcon)">
       </span>
-      <h1 v-if="fetching">Cargando...</h1>
     </div>
+    <h3 v-if="fetching">Cargando...</h3>
   </div>
 </template>
 
