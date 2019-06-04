@@ -1,6 +1,7 @@
 <template>
   <div class="selectors">
-    <Cities /><Scales />
+    <Cities/>
+    <Scales/>
   </div>
 </template>
 
@@ -19,10 +20,10 @@ export default {
 
 <style>
 .selectors {
-    position: absolute;
-    justify-content: space-around;
-    display: flex;
-    right: 2px;
-    top: 2px;
+  position: absolute;
+  justify-content: space-around;
+  display: flex;
+  right: 2px;
+  top: 2px;
 }
 </style>

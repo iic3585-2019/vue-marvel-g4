@@ -4,7 +4,7 @@
       <div id="nav">
         <router-link to="/">Pronóstico del día</router-link>
         <router-link to="/forecast">Pronóstico para la semana</router-link>
-        <Selectors />
+        <Selectors/>
       </div>
       <router-view/>
     </v-app>
@@ -19,7 +19,7 @@ import Selectors from "@/components/Selectors.vue";
 export default {
   name: "app",
   components: {
-    Selectors,
+    Selectors
   }
 };
 </script>

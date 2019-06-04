@@ -6,7 +6,7 @@
       :items="scales"
       item-text="name"
       return-object
-      background-color= "#f88643"
+      background-color="#f88643"
       hide-details
       solo
     ></v-select>
@@ -40,6 +40,6 @@ export default {
 
 <style>
 .scaleSelector {
-    width: 20%;
+  width: 20%;
 }
 </style>

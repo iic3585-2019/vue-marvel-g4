@@ -6,7 +6,7 @@
       item-text="name"
       return-object
       solo
-      background-color= "#f88643"
+      background-color="#f88643"
       hide-details
       no-data-text="No se encuentra el lugar"
     ></v-autocomplete>
