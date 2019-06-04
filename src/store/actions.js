@@ -5,22 +5,30 @@ export default {
   updateScale({ commit }, scale) {
     commit("updateScale", scale);
   },
-  async fetchWeather({ commit }, id, scale) {
+  async fetchWeather(context) {
+    const { commit, state } = context;
+
+    const { id, scale } = state;
+
     const weatherData = await fetch(
       "http://api.openweathermap.org/data/2.5/weather?id=" +
         id +
         "&APPID=08763c0f0a8c7b51e8af42c6f38e9a40&units=" +
-        scale
+        scale.param
     ).then(data => data.json());
 
     commit("updateWeather", weatherData);
   },
-  async fetchForecast({ commit }, id, scale) {
+  async fetchForecast(context) {
+    const { commit, state } = context;
+
+    const { id, scale } = state;
+
     const weatherData = await fetch(
       "http://api.openweathermap.org/data/2.5/forecast?id=" +
         id +
         "&APPID=08763c0f0a8c7b51e8af42c6f38e9a40&units=" +
-        scale
+        scale.param
     ).then(data => data.json());
 
     let days = [];
@@ -55,6 +63,6 @@ export default {
       }
     });
 
-    commit("fetchForecast", forecastData);
+    commit("updateForecast", forecastData);
   }
 };
