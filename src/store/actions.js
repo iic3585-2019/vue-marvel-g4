@@ -1,9 +1,12 @@
 export default {
   updateCity({ commit }, city) {
     commit("updateCity", city);
+
+    // TODO: update weather
   },
   updateScale({ commit }, scale) {
     commit("updateScale", scale);
+    // TODO: update weather
   },
   async fetchWeather(context) {
     const { commit, state } = context;

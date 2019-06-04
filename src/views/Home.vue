@@ -18,7 +18,7 @@
 </style>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "home",
@@ -34,18 +34,19 @@ export default {
     getIconUrl: lastFetchData =>
       "http://openweathermap.org/img/w/" +
       lastFetchData.weather[0].icon +
-      ".png"
+      ".png",
+    ...mapActions(["fetchWeather"])
   },
   watch: {
     city() {
-      this.$store.dispatch("fetchWeather");
+      this.fetchWeather();
     },
     scale() {
-      this.$store.dispatch("fetchWeather");
+      this.fetchWeather();
     }
   },
   beforeMount() {
-    this.$store.dispatch("fetchWeather");
+    this.fetchWeather();
   }
 };
 </script>

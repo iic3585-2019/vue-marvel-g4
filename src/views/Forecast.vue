@@ -28,7 +28,7 @@ img {
 
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "forecast",
@@ -45,7 +45,8 @@ export default {
         "Sábado"
       ];
       return weekday[date.getDay()] + " " + date.getDate();
-    }
+    },
+    ...mapActions(["fetchForecast"])
   },
   computed: {
     ...mapGetters({
@@ -58,14 +59,14 @@ export default {
   },
   watch: {
     city() {
-      this.$store.dispatch("fetchForecast");
+      this.fetchForecast();
     },
     scale() {
-      this.$store.dispatch("fetchForecast");
+      this.fetchForecast();
     }
   },
   beforeMount() {
-    this.$store.dispatch("fetchForecast");
+    this.fetchForecast();
   }
 };
 </script>
