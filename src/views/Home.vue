@@ -4,7 +4,7 @@
     <h1>El tiempo en {{city}}</h1>
     <span v-if="lastFetch && !fetching">
       <span class="title" v-text="lastFetch.main.temp + ' ' + scale"></span>
-      <img :src="getUrl(lastFetch)">
+      <img :src="getIconUrl(lastFetch)">
     </span>
 
     <h1 v-else>...</h1>
@@ -16,8 +16,6 @@
   margin: 0.5em;
 }
 </style>
-
-
 
 <script>
 export default {
@@ -45,8 +43,10 @@ export default {
     }
   },
   methods: {
-    getUrl: item =>
-      "http://openweathermap.org/img/w/" + item.weather[0].icon + ".png"
+    getIconUrl: lastFetchData =>
+      "http://openweathermap.org/img/w/" +
+      lastFetchData.weather[0].icon +
+      ".png"
   },
   watch: {
     city() {

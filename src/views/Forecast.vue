@@ -3,14 +3,14 @@
     <img src="http://icons.iconarchive.com/icons/papirus-team/papirus-apps/256/weather-icon.png">
     <h1>Pronóstico para {{city}}</h1>
 
-    <div class="weather" v-for="item in forecast" :key="item.dt">
+    <div class="weather" v-for="day in forecast" :key="day.dt">
       <span v-if="!fetching">
-        {{ getDateInfo(item.date) +': '+item.minT +' '+scale }}
-        <img :src="getUrl(item.minIcon)">
-        {{' / '+item.maxT+' '+scale }}
-        <img :src="getUrl(item.maxIcon)">
+        {{ getDateInfo(day.date) + ': '+ day.minT + ' '+ scale }}
+        <img :src="getUrl(day.minIcon)">
+        {{' / '+ day.maxT + ' '+ scale }}
+        <img :src="getUrl(day.maxIcon)">
       </span>
-      <h1 v-if="fetching">...</h1>
+      <h1 v-if="fetching">Cargando...</h1>
     </div>
   </div>
 </template>
@@ -31,7 +31,7 @@ img {
 export default {
   name: "forecast",
   methods: {
-    getUrl: item => "http://openweathermap.org/img/w/" + item + "d.png",
+    getUrl: day => "http://openweathermap.org/img/w/" + day + "d.png",
     getDateInfo: date => {
       const weekday = [
         "Domingo",
