@@ -10,7 +10,9 @@ export default new Vuex.Store({
     lon: -70.64827,
     lat: -33.45694,
     scale: { name: "°C", param: "metric" },
+    fetching: false,
     lastFetch: null,
+    forecast: null,
     history: []
   },
   mutations: {
@@ -19,13 +21,12 @@ export default new Vuex.Store({
       state.name = city.name;
       state.lon = city.coord.lon;
       state.lat = city.coord.lat;
-      this.dispatch("fetchWeather");
     },
     updateScale(state, scale) {
       state.scale = scale;
-      this.dispatch("fetchWeather");
     },
     async fetchWeather(state) {
+      state.fetching = true;
       const data = await fetch(
         "http://api.openweathermap.org/data/2.5/weather?id=" +
           state.id +
@@ -36,6 +37,28 @@ export default new Vuex.Store({
         state.history.push(state.lastFetch);
       }
       state.lastFetch = data;
+      state.fetching = false;
+    },
+    async fetchForecast(state) {
+      state.fetching = true;
+      const data = await fetch(
+        "http://api.openweathermap.org/data/2.5/forecast?id=" +
+          state.id +
+          "&APPID=08763c0f0a8c7b51e8af42c6f38e9a40&units=" +
+          state.scale.param
+      ).then(data => data.json());
+      let days = [];
+      let forecast = [];
+
+      data.list.forEach(element => {
+        const day = new Date(element.dt_txt).getDay();
+        if (!days.includes(day)) {
+          days.push(day);
+          forecast.push(element);
+        }
+      });
+      state.forecast = forecast;
+      state.fetching = false;
     }
   },
   actions: {
@@ -47,6 +70,9 @@ export default new Vuex.Store({
     },
     fetchWeather({ commit }) {
       commit("fetchWeather");
+    },
+    fetchForecast({ commit }) {
+      commit("fetchForecast");
     }
   }
 });
