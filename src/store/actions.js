@@ -11,10 +11,9 @@ export default {
     const { id, scale } = state;
 
     const weatherData = await fetch(
-      "http://api.openweathermap.org/data/2.5/weather?id=" +
-        id +
-        "&APPID=08763c0f0a8c7b51e8af42c6f38e9a40&units=" +
-        scale.param
+      `http://api.openweathermap.org/data/2.5/weather?id=${id}&APPID=${
+        process.env.VUE_APP_APP_ID
+      }&units=${scale.param}`
     ).then(data => data.json());
 
     commit("updateWeather", weatherData);
@@ -25,10 +24,9 @@ export default {
     const { id, scale } = state;
 
     const weatherData = await fetch(
-      "http://api.openweathermap.org/data/2.5/forecast?id=" +
-        id +
-        "&APPID=08763c0f0a8c7b51e8af42c6f38e9a40&units=" +
-        scale.param
+      `http://api.openweathermap.org/data/2.5/forecast?id=${id}&APPID=${
+        process.env.VUE_APP_APP_ID
+      }&units=${scale.param}`
     ).then(data => data.json());
 
     let days = [];
