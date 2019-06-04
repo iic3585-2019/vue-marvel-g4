@@ -14,8 +14,8 @@ export default new Vuex.Store({
     lat: -33.45694,
     scale: { name: "°C", param: "metric" },
     fetching: true,
-    lastFetch: null,
-    forecast: null,
+    lastFetch: {},
+    forecast: [],
     history: []
   },
   getters,
