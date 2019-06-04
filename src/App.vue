@@ -2,8 +2,10 @@
   <div id="app">
     <v-app>
       <div id="nav">
-        <router-link to="/">Pronóstico del día</router-link>
-        <router-link to="/forecast">Pronóstico para la semana</router-link>
+        <span class="group-nav">
+          <router-link to="/">Pronóstico del día</router-link>
+          <router-link to="/forecast">Pronóstico para la semana</router-link>
+        </span>
         <Selectors/>
       </div>
       <router-view/>
@@ -36,6 +38,10 @@ export default {
   background-color: #eb5d09;
   text-align: left;
   box-shadow: 0px 1px 3px 0px #bcb9b9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 #nav a:hover {
@@ -47,11 +53,14 @@ export default {
   text-decoration: none;
   font-size: 15px;
   padding: 15px;
-  display: inline-block;
 }
 
 #nav a.router-link-exact-active {
   background-color: #e15809;
   font-weight: bold;
+}
+
+.group-nav {
+  display: flex;
 }
 </style>

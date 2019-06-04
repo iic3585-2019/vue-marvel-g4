@@ -1,5 +1,5 @@
 <template>
-  <div class="citySelector">
+  <div class="citySelector selector">
     <v-autocomplete
       v-model="inputtext"
       :items="cities"
@@ -34,6 +34,7 @@ export default {
   }
 };
 </script>
+
 
 <style>
 .citySelector {
