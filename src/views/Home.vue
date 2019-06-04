@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img src="http://icons.iconarchive.com/icons/papirus-team/papirus-apps/256/weather-icon.png">
-    <h1>El tiempo en {{city}}</h1>
+    <h1>El tiempo en {{ city }}</h1>
     <span v-if="lastFetch && !fetching">
       <span class="title" v-text="lastFetch.main.temp + ' ' + scale"></span>
       <img :src="getIconUrl(lastFetch)">
