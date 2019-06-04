@@ -20,10 +20,14 @@ export default {
 
 <style>
 .selectors {
-  position: absolute;
-  justify-content: space-around;
+  /* position: absolute; */
+  justify-content: space-between;
   display: flex;
   right: 2px;
   top: 2px;
+}
+
+.selector {
+  margin: 2px;
 }
 </style>

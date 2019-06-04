@@ -1,5 +1,5 @@
 <template>
-  <div class="scaleSelector">
+  <div class="scaleSelector selector">
     <v-select
       id="scales"
       v-model="inputtext"
@@ -40,6 +40,7 @@ export default {
 
 <style>
 .scaleSelector {
-  width: 20%;
+  width: 30%;
 }
 </style>
+
