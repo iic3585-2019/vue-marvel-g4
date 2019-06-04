@@ -5,8 +5,10 @@
 
     <div class="weather" v-for="item in forecast" :key="item.dt">
       <span v-if="!fetching">
-        {{ getDateInfo(item) +': '+item.main.temp +' '+scale }}
-        <img :src="getUrl(item)">
+        {{ getDateInfo(item.date) +': '+item.minT +' '+scale }}
+        <img :src="getUrl(item.minIcon)">
+        {{' / '+item.maxT+' '+scale }}
+        <img :src="getUrl(item.maxIcon)">
       </span>
       <h1 v-if="fetching">...</h1>
     </div>
@@ -29,9 +31,8 @@ img {
 export default {
   name: "forecast",
   methods: {
-    getUrl: item =>
-      "http://openweathermap.org/img/w/" + item.weather[0].icon + ".png",
-    getDateInfo: item => {
+    getUrl: item => "http://openweathermap.org/img/w/" + item + "d.png",
+    getDateInfo: date => {
       const weekday = [
         "Domingo",
         "Lunes",
@@ -41,7 +42,6 @@ export default {
         "Viernes",
         "Sábado"
       ];
-      const date = new Date(item.dt_txt);
       return weekday[date.getDay()] + " " + date.getDate();
     }
   },

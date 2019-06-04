@@ -49,14 +49,35 @@ export default new Vuex.Store({
       ).then(data => data.json());
       let days = [];
       let forecast = [];
-
+      let objDay = {};
+      let currentDay = -1;
       data.list.forEach(element => {
-        const day = new Date(element.dt_txt).getDay();
+        const date = new Date(element.dt_txt);
+        const day = date.getDay();
+        const hour = date.getHours();
+
         if (!days.includes(day)) {
           days.push(day);
-          forecast.push(element);
+          currentDay = day;
+          // forecast.push(element);
+        }
+        if (currentDay == day) {
+          if (hour > 5 && hour < 13 && Object.keys(objDay).length == 0) {
+            objDay.minT = parseInt(element.main.temp);
+            objDay.minIcon = element.weather[0].icon.slice(-3, -1);
+          }
+          if (hour == 18) {
+            objDay.maxT = parseInt(element.main.temp);
+            objDay.maxIcon = element.weather[0].icon.slice(-3, -1);
+          }
+          if (hour == 21) {
+            objDay.date = date;
+            forecast.push(objDay);
+            objDay = {};
+          }
         }
       });
+
       state.forecast = forecast;
       state.fetching = false;
     }
