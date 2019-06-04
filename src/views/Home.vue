@@ -18,29 +18,17 @@
 </style>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "home",
   computed: {
-    city: {
-      get() {
-        return this.$store.state.name;
-      }
-    },
-    lastFetch: {
-      get() {
-        return this.$store.state.lastFetch;
-      }
-    },
-    scale: {
-      get() {
-        return this.$store.state.scale.name;
-      }
-    },
-    fetching: {
-      get() {
-        return this.$store.state.fetching;
-      }
-    }
+    ...mapGetters({
+      city: "cityName",
+      lastFetch: "lastFetch",
+      scale: "scaleName",
+      fetching: "fetching"
+    })
   },
   methods: {
     getIconUrl: lastFetchData =>

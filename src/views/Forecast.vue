@@ -28,6 +28,8 @@ img {
 
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "forecast",
   methods: {
@@ -46,26 +48,13 @@ export default {
     }
   },
   computed: {
-    city: {
-      get() {
-        return this.$store.state.name;
-      }
-    },
-    forecast: {
-      get() {
-        return this.$store.state.forecast;
-      }
-    },
-    scale: {
-      get() {
-        return this.$store.state.scale.name;
-      }
-    },
-    fetching: {
-      get() {
-        return this.$store.state.fetching;
-      }
-    }
+    ...mapGetters({
+      city: "cityName",
+      lastFetch: "lastFetch",
+      scale: "scaleName",
+      fetching: "fetching",
+      forecast: "forecast"
+    })
   },
   watch: {
     city() {
