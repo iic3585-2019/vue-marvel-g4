@@ -8,6 +8,9 @@ export default {
   updateScale(state, scale) {
     state.scale = scale;
   },
+  fetchingContent(state) {
+    state.fetching = true;
+  },
   updateWeather(state, weatherData) {
     if (state.lastFetch) {
       state.history.push(state.lastFetch);

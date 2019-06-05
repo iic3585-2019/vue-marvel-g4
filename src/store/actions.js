@@ -1,3 +1,5 @@
+import { groupBy } from "lodash";
+
 export default {
   updateCity({ commit }, city) {
     commit("updateCity", city);
@@ -7,7 +9,7 @@ export default {
   },
   async fetchWeather(context) {
     const { commit, state } = context;
-
+    commit("fetchingContent");
     const { id, scale } = state;
 
     const weatherData = await fetch(
@@ -20,7 +22,7 @@ export default {
   },
   async fetchForecast(context) {
     const { commit, state } = context;
-
+    commit("fetchingContent");
     const { id, scale } = state;
 
     const weatherData = await fetch(
@@ -29,36 +31,39 @@ export default {
       }&units=${scale.param}`
     ).then(data => data.json());
 
-    let days = [];
+    // let days = [];
     let forecastData = [];
-    let objDay = {};
-    let currentDay = -1;
 
-    weatherData.list.forEach(element => {
-      const date = new Date(element.dt_txt);
-      const day = date.getDay();
-      const hour = date.getHours();
+    const byDay = groupBy(weatherData.list, item => {
+      const day = new Date(item.dt_txt).getDay();
+      return day;
+    });
+    const firstDay = new Date(weatherData.list[0].dt_txt).getDay();
+    const lastDay = new Date(
+      weatherData.list[weatherData.list.length - 1].dt_txt
+    ).getDay();
 
-      if (!days.includes(day)) {
-        days.push(day);
-        currentDay = day;
-        // forecast.push(element);
-      }
-      if (currentDay == day) {
-        if (hour > 5 && hour < 13 && Object.keys(objDay).length == 0) {
-          objDay.minT = parseInt(element.main.temp);
-          objDay.minIcon = element.weather[0].icon.slice(-3, -1);
-        }
-        if (hour == 18) {
-          objDay.maxT = parseInt(element.main.temp);
-          objDay.maxIcon = element.weather[0].icon.slice(-3, -1);
-        }
-        if (hour == 21) {
-          objDay.date = date;
-          forecastData.push(objDay);
-          objDay = {};
-        }
-      }
+    let days = [];
+
+    for (let i = firstDay; i % 7 != lastDay + 1; i++) {
+      days.push(i % 7);
+    }
+
+    days.forEach(day => {
+      const max = byDay[day].reduce((max, data) =>
+        max.main.temp > data.main.temp ? max : data
+      );
+      const min = byDay[day].reduce((min, data) =>
+        min.main.temp < data.main.temp ? min : data
+      );
+      const objDay = {
+        minT: Math.round(min.main.temp),
+        minIcon: min.weather[0].icon.slice(-3, -1),
+        maxT: Math.round(max.main.temp),
+        maxIcon: max.weather[0].icon.slice(-3, -1),
+        date: new Date(byDay[day][0].dt_txt)
+      };
+      forecastData.push(objDay);
     });
 
     commit("updateForecast", forecastData);
