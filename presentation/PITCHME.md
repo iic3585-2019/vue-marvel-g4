@@ -28,6 +28,7 @@ marp: true
   - Vue vs React
 - Vuex
 - Router
+- API
 - Testing
 
 ---
@@ -407,6 +408,21 @@ new Vue({
 ```
 
 ---
+# API
+
+Versión gratuita de [OpenWeatherMap](https://openweathermap.org/api)
+
+```javascript
+const weatherData = await fetch(
+      `http://api.openweathermap.org/data/2.5/weather?id=${id}&APPID=${
+        process.env.VUE_APP_APP_ID
+      }&units=${scale.param}`
+    ).then(data => data.json());
+
+```
+
+---
+
 
 # Testing
 
