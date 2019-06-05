@@ -599,3 +599,19 @@ test('"updateCity" changes the city id, name, lon and lat', () => {
 - Buena documentación
 - Curva de aprendizaje sencilla
 - Buenas herramientas para el *developer*: CLI, DevTools, etc
+
+---
+
+
+# Vue
+![](./logo.png)
+
+### Grupo 4
+
+###### Natalia Barra - Luis Chodiman - Mauricio Ortiz
+
+--- 
+
+# Referencias
+
+- https://flaviocopes.com/tags/vue/
