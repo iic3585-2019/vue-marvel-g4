@@ -90,7 +90,98 @@ export default {
 <style>
 </style>
 ```
+---
+# Vuex
+- Redux de Vue
+- Características principales:
+  - *store*: similar al de React. Además del state, contiene también los actions, mutations y getters.
+  - *actions*: también actuan como "action-creators".
+  - *mutations*: básicamente los "reducers"
+  - *getters*: retornan información del store.
+---
+### Ejemplo
+*store* (`store/index.js`)
+```javascript
+import Vuex from "vuex";
+import actions from "./actions";
+import mutations from "./mutations";
+import getters from "./getters";
 
+Vue.use(Vuex);
+
+export default new Vuex.Store({
+  state: {
+    id: 3871336,
+    name: "Santiago",
+    // more variables...
+  },
+  getters,
+  mutations,
+  actions
+});
+```
+---
+`store/action.js`
+```javascript
+export default {
+  async fetchWeather(context) {
+    const { commit, state } = context;
+    commit("fetchingContent");
+    const { id, scale } = state;
+    const weatherData = await fetch(
+      `http://api.openweathermap.org/data/2.5/weather?id=${id}&APPID=${
+        process.env.VUE_APP_APP_ID
+      }&units=${scale.param}`
+    ).then(data => data.json());
+    commit("updateWeather", weatherData);
+  }
+}
+```
+- `commit(mutation, payload)` informa a la store que realizar
+---
+
+- Componentes pueden llamar a la acción directamente mediante `mapActions`.
+
+```javascript
+export default {
+  name: "home",
+  // ....
+  methods: {
+    ...mapActions(["fetchWeather"]) //mapeamos la función desde el store
+  },
+  watch: {
+    city() {
+      this.fetchWeather(); // lo llamamos como método
+    }
+  }
+  // ...
+}
+```
+- También pueden hacerlo sin lo anterior haciendo`dispatch` a la store.
+
+```javascript
+this.$store.dispatch("fetchWeather");
+```
+
+---
+`store/mutations.js`
+```javascript
+export default {
+  updateWeather(state, weatherData) {
+    if (state.lastFetch) {
+      state.history.push(state.lastFetch);
+    }
+    state.lastFetch = weatherData;
+    state.fetching = false;
+  }
+}
+```
+
+- Importante: mutations DEBEN ser **síncronas**. Sin ello, no se pueden trackear los cambios realizados.
+
+---
+
+# Router
 
 ---
 
