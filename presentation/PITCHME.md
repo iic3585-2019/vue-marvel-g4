@@ -49,7 +49,7 @@ vue create <project-name>
 ## DevTools
 - Herramienta para inspeccionar aplicación
 (similar a la de React)
-- Integración con Vuex
+- Integración con Vuex (sin necesidad de descargar dos extensiones)
 - Disponible en Chrome, Firefox y como aplicación independiente
 ---
 ![](./devtools.png)
@@ -143,6 +143,7 @@ Archivos `.vue` que contienen toda la estructura de un componente (HTML, JS, CSS
 ```
 <template>
 </template>
+
 <script>
 export default {
   name: "componentName"
@@ -157,6 +158,7 @@ export default {
   // otras propiedades
 }
 </script>
+
 <style>
 </style>
 ```
@@ -181,6 +183,7 @@ export default {
 - Curva de aprendizaje
 - Estado vs data
 - Aplicaciones móviles
+- Vue es "más delgado"
 
 ---
 # Vuex
@@ -191,6 +194,38 @@ export default {
   - *mutations*: básicamente los "reducers"
   - *getters*: retornan información del store.
 ---
+## Getters?
+
+- Pensar que son como "*computed properties*" del *store*
+- Cacheadas, sólo se recalculan si sus *inputs* cambian
+
+Ejemplo: 
+
+```javascript
+const store = new Vuex.Store({
+  state: {
+    todos: [
+      { id: 1, text: '...', done: true },
+      { id: 2, text: '...', done: false }
+    ]
+  },
+  getters: {
+    doneTodos: state => {
+      return state.todos.filter(todo => todo.done)
+    }
+  }
+})
+```
+
+---
+## Principios a tener en cuenta
+
+- La única forma de alterar el estado es a través de *mutations*
+- *Mutations* deben ser **síncronas**
+- Lógica asíncrona debe ser encapsulada en *actions*
+
+---
+
 ### Ejemplo
 *store* (`store/index.js`)
 ```javascript
@@ -291,6 +326,35 @@ export default {
 }
 ```
 - Útil cuando múltiples componentes requieren un mismo elemento alterado (pre-procesar data).
+
+---
+
+## Bonus: *Modules*
+
+Archivo `store.js` o `store/index.js` puede crecer demasiado y se sale de control.
+
+
+```javascript
+const moduleA = {
+  state: { ... },
+  mutations: { ... },
+  actions: { ... },
+  getters: { ... }
+}
+const moduleB = {
+  state: { ... },
+  mutations: { ... },
+  actions: { ... }
+}
+const store = new Vuex.Store({
+  modules: {
+    a: moduleA,
+    b: moduleB
+  }
+})
+store.state.a // -> `moduleA`'s state
+store.state.b // -> `moduleB`'s state
+```
 
 ---
 
@@ -512,3 +576,10 @@ test('"updateCity" changes the city id, name, lon and lat', () => {
 - Se puede usar `Jest`
 - `Enzyme` es reemplazado por `vue-test-utils`
 - Es necesario realizar un _mock_ del `store` para testear componentes con `Vuex`
+
+---
+# Conclusiones finales
+
+- Buena documentación
+- Curva de aprendizaje sencilla
+- Buenas herramientas para el *developer*: CLI, DevTools, etc
