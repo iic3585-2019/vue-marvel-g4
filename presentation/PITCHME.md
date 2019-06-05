@@ -3,7 +3,7 @@ marp: true
 ---
 
 # Vue
-![](./../src/assets/logo.png)
+![](./logo.png)
 
 ### Grupo 4
 
@@ -42,7 +42,7 @@ vue create <project-name>
 ```
 ---
 - Configurable: 
-![](vue_cli_config.png)
+![](./vue_cli_config.png)
 - También hay una versión con interfaz gráfica
 ---
 
@@ -52,19 +52,19 @@ vue create <project-name>
 - Integración con Vuex
 - Disponible en Chrome, Firefox y como aplicación independiente
 ---
-![](devtools.png)
+![](./devtools.png)
 
 
 ---
 ## Vetur 
 
-![](vetur.png)
+![](./vetur.png)
 - Plugin sumamente útil
 - Soporta todos los lenguajes utilizados en Vue
 - Snippets (con scaffolding), autocompletado, linting, error checking, code formating
 
 ---
-## Vuetify ![](vuetify.png)
+## Vuetify ![](./vuetify.png)
 
 Framework con componentes para Vue basado en Material Design. 
 
@@ -165,7 +165,7 @@ export default {
 # Vue vs React
 
 
-# ![](VueVsReact.png)
+# ![](./VueVsReact.png)
 
 --- 
 ## Similitudes
