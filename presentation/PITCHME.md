@@ -22,8 +22,10 @@ marp: true
   - Vue CLI
   - DevTools
   - Vetur
+  - Vuetify
 - Vue
   - Single File Components
+  - Vue vs React
 - Vuex
 - Router
 - Testing
@@ -62,6 +64,74 @@ vue create <project-name>
 - Snippets (con scaffolding), autocompletado, linting, error checking, code formating
 
 ---
+## Vuetify ![](vuetify.png)
+
+Framework con componentes para Vue basado en Material Design. 
+
+- Aplicaciones bonitas en menos tiempo
+- [Documentación extensa](https://vuetifyjs.com/en/getting-started/quick-start)
+
+##### Instalación: 
+```batch
+yarn add vuetify
+```
+
+--- 
+##### Setup en la aplicación:
+`main.js`
+```javascript
+import Vue from 'vue'
+
+// Importación A-La-Carte
+import Vuetify, {
+  VApp, // Importar siempre
+  VFooter //Componente que se va a ocupar
+} from 'vuetify/lib'
+
+import 'vuetify/dist/vuetify.min.css' //Css
+
+Vue.use(Vuetify, {
+  components: {
+    VApp,
+    VFooter
+  }
+})
+```
+--- 
+###### Material Icons
+`index.html`
+```
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+</head>
+```
+
+###### Componente `v-app`
+`App.vue`
+```
+<template>
+  <div id="app">
+    <v-app>
+    ... Componentes
+    </v-app>
+  </div>
+</template>
+```
+--- 
+##### Uso:
+
+`components/Cities.vue`
+```
+<template>
+  <div class="citySelector selector">
+    <v-autocomplete
+      // Atributos
+    ></v-autocomplete>
+  </div>
+</template>
+```
+
+---
 # Vue
 
 Aspectos importantes utilizados en la aplicación
@@ -70,7 +140,7 @@ Aspectos importantes utilizados en la aplicación
 
 ## Single File Componets
 Archivos `.vue` que contienen toda la estructura de un componente (HTML, JS, CSS)
-```javascript
+```
 <template>
 </template>
 <script>
@@ -90,6 +160,28 @@ export default {
 <style>
 </style>
 ```
+---
+
+# Vue vs React
+
+
+# ![](VueVsReact.png)
+
+--- 
+## Similitudes
+
+- Frameworks JS enfocados en la interfaz de usuario (frontend)
+- DOM Virtual
+- Arquitectura basada en componentes
+
+---
+## Diferencias
+- `<template>` vs `JSX`
+- Comunidad
+- Curva de aprendizaje
+- Estado vs data
+- Aplicaciones móviles
+
 ---
 # Vuex
 - Redux de Vue
@@ -203,6 +295,52 @@ export default {
 ---
 
 # Router
+
+---
+## Componente router
+`router.js`
+```
+import Vue from "vue";
+import Router from "vue-router";
+import Home from "./views/Home.vue";
+// Otras vistas
+
+Vue.use(Router);
+
+export default new Router({
+  routes: [
+    {
+      path: "/",
+      name: "home",
+      component: Home
+    },
+    // Otras rutas
+  ]
+});
+```
+---
+## Uso en la apliación
+`main.js`
+```
+import Vue from "vue";
+import router from "./router";
+
+new Vue({
+  router,
+  render: h => h(App)
+}).$mount("#app");
+```
+
+`App.vue`
+```
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">Pronóstico del día</router-link>
+      Otras rutas...
+    </div>
+    <router-view/> //Muestra la vista default
+  </div>
+```
 
 ---
 
