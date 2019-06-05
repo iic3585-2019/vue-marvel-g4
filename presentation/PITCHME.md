@@ -3,8 +3,7 @@ marp: true
 ---
 
 # Vue
-
-# ![](public/logo.PNG)
+![](./../src/assets/logo.png)
 
 ### Grupo 4
 
@@ -18,7 +17,80 @@ marp: true
 
 # Puntos principales
 
--
+
+- Herramientas útiles
+  - Vue CLI
+  - DevTools
+  - Vetur
+- Vue
+  - Single File Components
+- Vuex
+- Router
+- Testing
+
+---
+# Herramientas útiles
+## Vue CLI
+
+- Vue Command Line Interface
+- Otorga herramientas para acelerar la creación de un proyecto Vue
+
+```bash
+vue create <project-name>
+```
+---
+- Configurable: 
+![](vue_cli_config.png)
+- También hay una versión con interfaz gráfica
+---
+
+## DevTools
+- Herramienta para inspeccionar aplicación
+(similar a la de React)
+- Integración con Vuex
+- Disponible en Chrome, Firefox y como aplicación independiente
+---
+![](devtools.png)
+
+
+---
+## Vetur 
+
+![](vetur.png)
+- Plugin sumamente útil
+- Soporta todos los lenguajes utilizados en Vue
+- Snippets (con scaffolding), autocompletado, linting, error checking, code formating
+
+---
+# Vue
+
+Aspectos importantes utilizados en la aplicación
+
+---
+
+## Single File Componets
+Archivos `.vue` que contienen toda la estructura de un componente (HTML, JS, CSS)
+```javascript
+<template>
+</template>
+<script>
+export default {
+  name: "componentName"
+  data() { // state del componente
+    return { // datos del state
+      show: true
+    }
+  }
+  method: {
+    // funciones
+  }
+  // otras propiedades
+}
+</script>
+<style>
+</style>
+```
+
 
 ---
 
