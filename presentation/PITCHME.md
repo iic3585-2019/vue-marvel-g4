@@ -180,6 +180,27 @@ export default {
 - Importante: mutations DEBEN ser **síncronas**. Sin ello, no se pueden trackear los cambios realizados.
 
 ---
+`store/getters.js`
+```javascript
+export default {
+  cityName(state) {
+    return state.name;
+  }
+};
+```
+`views/Forecast.vue`
+```javascript
+export default {
+  computed: {
+    ...mapGetters({
+      city: "cityName",
+    })
+  }
+}
+```
+- Útil cuando múltiples componentes requieren un mismo elemento alterado (pre-procesar data).
+
+---
 
 # Router
 
