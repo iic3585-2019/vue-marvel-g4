@@ -5,6 +5,7 @@
         <span class="group-nav">
           <router-link to="/">Pronóstico del día</router-link>
           <router-link to="/forecast">Pronóstico para la semana</router-link>
+          <router-link to="/history">Pronósticos anteriores</router-link>
         </span>
         <Selectors/>
       </div>

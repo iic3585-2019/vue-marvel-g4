@@ -16,7 +16,8 @@ export default new Vuex.Store({
     fetching: true,
     lastFetch: {},
     forecast: [],
-    history: []
+    history: [],
+    fetchCounter: 0
   },
   getters,
   mutations,

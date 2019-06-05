@@ -13,5 +13,8 @@ export default {
   },
   forecast(state) {
     return state.forecast;
+  },
+  history(state) {
+    return state.history;
   }
 };

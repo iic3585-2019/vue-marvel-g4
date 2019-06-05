@@ -12,11 +12,13 @@ export default {
     state.fetching = true;
   },
   updateWeather(state, weatherData) {
-    if (state.lastFetch) {
-      state.history.push(state.lastFetch);
-    }
-
     state.lastFetch = weatherData;
+
+    state.lastFetch._id = state.fetchCounter;
+    state.lastFetch.scale = state.scale.name;
+    state.lastFetch.time = new Date();
+    state.history.unshift(state.lastFetch);
+    state.fetchCounter += 1;
 
     state.fetching = false;
   },
